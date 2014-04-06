@@ -1,0 +1,36 @@
+int x=0
+proctype Inc(){
+ do
+  ::true ->
+    if
+      ::x<10->x=x+1
+    fi
+ od
+}
+proctype Dec(){
+ do
+  ::true ->
+    if
+      ::x>0->x=x-1
+    fi
+ od
+}
+proctype Reset(){
+ do
+  ::true ->
+   if
+    ::x==10->x=0
+   fi
+ od
+}
+proctype Check(){
+ assert(x>=0 && x<=10)
+}
+init{
+ atomic{
+  run Inc();
+  run Dec();
+  run Reset();
+  run Check();
+ }
+}
